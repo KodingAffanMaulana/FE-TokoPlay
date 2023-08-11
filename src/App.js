@@ -1,29 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState, useEffect } from 'react'
+import Home from './Pages/Home/Home';
+import './App.css'
+import { Header } from './components/Header/Header';
 
-const url = 'https://affanmaulanamidproject-production.up.railway.app/products?videoID=321'
+const App = () => {
+  // const [products, setProducts] = useState([]);
 
-function App() {
-  const [products, setProducts] = useState([]);
+  // useEffect(() => {
+  //   fetch('https://affanmaulanamidproject-production.up.railway.app/thumbnails')
+  //     .then((res) => res.json())
+  //     .then(res => {
+  //       console.log(res)
+  //       setProducts(res)
+  //     })
+  // }, [])
 
-  const getData = async () => {
-    try {
-      const data = await fetch(url);
-      console.log('data', data);      
-      const response = data.json();
-      setProducts(response);
-    } catch (error) {
-    }
-  }
-
-  useEffect(() => {
-    getData();
-  }, [])
-
+  // return (
+  //   <div className="App">
+  //     <div>
+  //       <div>
+  //         {products.map((e) => (
+  //           <div key={e.videoID}>
+  //             <img src={`${e.imageUrl}`} alt='poto'/>
+  //             <p>{e.videoID}</p>
+  //           </div>
+  //         ))}</div>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="App">
-      Final Project Affan
+    <div>
+      <div className='App'>
+        <Header />
+        <Home />
+      </div>
     </div>
   );
 }
