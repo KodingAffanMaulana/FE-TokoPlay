@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider>
-          <App />
+        <App />
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>
