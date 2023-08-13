@@ -14,7 +14,6 @@ const Comment = () => {
 
     useEffect(() => {
         const loadDetail = async () => {
-            setLoading(true);
             try {
                 const url = 'https://affanmaulanamidproject-production.up.railway.app/comments?videoID=' + id;
                 const response = await fetch(url);
@@ -24,11 +23,10 @@ const Comment = () => {
             } catch (error) {
                 console.log(error);
             }
-            setLoading(false);
         };
 
         loadDetail()
-    }, [loading, id]);
+    }, [loading]);
 
     const addPhoto = (e) => {
         e.preventDefault();
