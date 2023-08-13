@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { TfiClose } from 'react-icons/tfi';
 import CardProduct from '../../components/CardProduct/CardProduct';
+import Comment from '../../components/Comment/AddComment';
 
 const Headers = () => {
     return (
@@ -12,7 +13,7 @@ const Headers = () => {
                     <span className='text-white text-sm sm:text-xl font-bold hover:text-slate-400'>Play</span>
                 </Link>
                 <div className='text-white flex items-center justify-center gap-4 p-4'>
-                    <p>Nama Toko</p>
+                    <p>TokoPlay Affan</p>
                 </div>
             </div>
         </div>
@@ -20,18 +21,20 @@ const Headers = () => {
 }
 
 const Detail = () => {
-    const [detail, setDetail] = useState(null);
+    // const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails';
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [videoUrl, setVideoUrl] = useState('');
     const { id } = useParams();
 
     useEffect(() => {
         const loadDetail = async () => {
             setLoading(true);
             try {
-                const url = "https://swapi.py4e.com/api/films/" + id;
+                const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails/video?videoID=' + id;
                 const response = await fetch(url);
                 const data = await response.json();
-                setDetail(data)
+                setVideoUrl(data[0].youtubeUrl);
             } catch (error) {
                 console.log(error);
             }
@@ -39,7 +42,25 @@ const Detail = () => {
         };
 
         loadDetail()
-    }, [id]);
+    }, []);
+
+    useEffect(() => {
+        const loadDetail = async () => {
+            setLoading(true);
+            try {
+                const url = 'https://affanmaulanamidproject-production.up.railway.app/products?videoID=' + id;
+                const response = await fetch(url);
+                const data = await response.json();
+                setProducts(data);
+                console.log('pro', data)
+            } catch (error) {
+                console.log(error);
+            }
+            setLoading(false);
+        };
+
+        loadDetail()
+    }, []);
 
     return (
         <>
@@ -50,10 +71,9 @@ const Detail = () => {
                     <div className='flex flex-col sm:flex-row gap-4 sm:gap-0'>
                         <div className='flex flex-row sm:flex-col overflow-x-auto sm:wrap sm:object-none sm:w-[20%] bg-slate-700 rounded-lg p-4 gap-4 '>
                             <h1 className='text-white font-bold flex items-center sm:justify-center sm:text-center'>Products</h1>
-                            <CardProduct title={'Bawang'} price={'10.000'} />
-                            <CardProduct title={'Bawang'} price={'10.000'} />
-                            <CardProduct title={'Bawang'} price={'10.000'} />
-                            <CardProduct title={'Bawang'} price={'10.000'} />
+                            {products.map(({ title, link, discount, price }) => (
+                                <CardProduct title={title} price={price} link={link} discount={discount} />
+                            ))}
                         </div>
 
                         <div className='sm:w-[60%]'>
@@ -63,24 +83,7 @@ const Detail = () => {
                         </div>
 
                         <div className='sm:w-[20%] sm:h-[85vh] flex flex-col bg-slate-700 rounded-lg p-4'>
-                            <div className='h-[100%]'>
-                                <h1 className='text-white font-bold text-center'>List Comments</h1>
-                                <div className='flex flex-col gap-2 mt-4 text-white'>
-                                    <p>
-                                        Komen
-                                        dskfsdlf
-                                        asdfkjasdf
-                                        sdfksdf
-                                        adsfjskdf
-                                        sdfkjsdkf
-                                        sdfkjsdkf
-                                    </p>
-                                </div>
-                            </div>
-                            <div className='h-[10%] flex justify-center items-center text-white p-4 gap-2'>
-                                <input type="text" className='rounded-lg px-2 py-1 text-black' placeholder='write your comments' />
-                                <button className='rounded-lg px-2 py-1 hover:bg-red-800'>Submit</button>
-                            </div>
+                            <Comment />
                         </div>
                     </div>
 
@@ -95,7 +98,7 @@ const Detail = () => {
     );
 }
 
-const videoUrl = 'https://www.youtube.com/embed/32NG53X0v54';
+
 
 const VideoCard = ({ title, videoUrl }) => {
     return (

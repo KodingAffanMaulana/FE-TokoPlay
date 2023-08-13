@@ -2,7 +2,7 @@ import React from 'react'
 import './Card.css'
 import { BsEye } from 'react-icons/bs'
 
-const CardThumbnail = ({ title, imageUrl }) => {
+const CardThumbnail = ({ title, imageUrl, view }) => {
     const containerStyle = {
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
@@ -35,7 +35,7 @@ const CardThumbnail = ({ title, imageUrl }) => {
                 </div>
                 <div className='flex items-center view px-[5px] rounded-[5px] py-[2px] gap-1'>
                     <BsEye />
-                    <p className='text-[12px]'>100</p>
+                    <p className='text-[12px]'>{view}</p>
                 </div>
             </div>
             <div className='col2 z-10 sm:p-2' style={col2Style}>
