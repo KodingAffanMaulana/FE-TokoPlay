@@ -23,7 +23,7 @@ const Headers = () => {
 const Detail = () => {
     // const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails';
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [setLoading] = useState(false);
     const [videoUrl, setVideoUrl] = useState('');
     const { id } = useParams();
 
