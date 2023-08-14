@@ -7,10 +7,10 @@ import Comment from '../../components/Comment/Comment';
 const Headers = () => {
     return (
         <div>
-            <div className='flex items-center justify-between p-2' >
+            <div className='flex items-center justify-between p-2 text-[12px] sm:text-xl' >
                 <Link to='/' className='flex items-center gap-3 pl-4 hover:text-slate-700 '>
                     <TfiClose color='white' className='text-sm sm:text-[20px] ' />
-                    <span className='text-white text-sm sm:text-xl font-bold hover:text-slate-400'>Play</span>
+                    <span className='text-white font-bold hover:text-slate-400'>Play</span>
                 </Link>
                 <div className='text-white flex items-center justify-center gap-4 p-4'>
                     <p>TokoPlay Affan</p>
