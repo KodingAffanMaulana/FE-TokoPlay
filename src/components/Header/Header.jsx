@@ -1,12 +1,20 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UrlImage from '../../assets/img/logo.png';
 import './Header.css';
 import SearchBox from '../SearchBox/SearchBox';
 import { Context } from '../../context/MyContext';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const { searchField, setSearchField, products, setProducts, setFilterProducts } = useContext(Context);
     const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails';
+
+    const location = useLocation();
+    const [activeRoute, setActiveRoute] = useState(location.pathname);
+
+    const handleNavLinkClick = (route) => {
+        setActiveRoute(route);
+    };
 
     useEffect(() => {
         fetch(url)
@@ -30,25 +38,37 @@ const Header = () => {
         setSearchField(searchFieldString);
     };
 
-    const buttonList = ["Live", "Explore", "Promo ULTAH!", "Official Store", "Tips & Rekomendasi"
+    const buttonList = ["Explore", "Promo ULTAH!", "Official Store", "Tips & Rekomendasi"
         , "Terbaru", "Upcoming"
     ]
+
 
     return (
         <div>
             <div className='flex items-center justify-between p-4'>
                 <div className='logo flex items-center'>
                     <img src={UrlImage} alt="logo" className='w-[150px] sm:w-[250px] ' />
-                    <span className='text-white text-sm sm:text-xl'>Play</span>
+                    <span className='text-white text-sm sm:text-xl'>Playfan</span>
                 </div>
                 <div className='flex items-center'>
                     <SearchBox
                         onChangeHandler={onSearchChange}
-                        placeholder='search live'
+                        placeholder='Search live'
                     />
                 </div>
             </div>
             <div className='text-white flex items-center p-4 overflow-x-auto sm:justify-center gap-2'>
+                <div className={activeRoute === '/' ? 'active' : ''}>
+                    <button className={`px-4 py-1 whitespace-nowrap border ${activeRoute === '/' ? 'border-green-400' : 'border-gray-400'} rounded-full`}>
+                        <Link
+                            to="/"
+                            onClick={() => handleNavLinkClick('/')}
+                            className={`text-base ${activeRoute === '/' ? 'text-green-400 ' : 'text-black'}`}
+                        >
+                            Live
+                        </Link>
+                    </button>
+                </div>
                 {buttonList.map((button, index) => (
                     <button
                         key={index} // Pastikan setiap elemen memiliki key unik saat menggunakan .map()

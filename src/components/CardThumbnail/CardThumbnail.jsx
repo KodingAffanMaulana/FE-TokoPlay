@@ -19,17 +19,17 @@ const CardThumbnail = ({ title, imageUrl, view }) => {
     const blurLayerStyle = {
         position: 'absolute',
         width: '100%',
-        height: '100%',
         background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%)', // Menambahkan latar belakang gelap
         borderRadius: '10px',
         zIndex: -1, // Mendorong ke lapisan belakang
         top: 0,
         left: 0,
+        height: '100%'
     };
 
     return (
         <div className='main flex flex-col' style={containerStyle}>
-            <div className='col1 flex sm:mb-[100%] items-center p-[8px]'>
+            <div className='col1 flex mb-[250px] sm:mb-[100%] items-center p-[8px]'>
                 <div className="flex items-center bg-red-600 px-[8px] rounded-[5px] py-[1px] mr-1">
                     <p className='text-[12px]'>LIVE</p>
                 </div>
@@ -39,7 +39,7 @@ const CardThumbnail = ({ title, imageUrl, view }) => {
                 </div>
             </div>
             <div className='col2 z-10 sm:p-2' style={col2Style}>
-                <div className='' style={blurLayerStyle}></div>
+                <div className='h-[300px] sm:h-[100%] ' style={blurLayerStyle}></div>
                 <h2 className='text-xl font-semibold'>{title}</h2>
                 <p>Shop Now</p>
             </div>

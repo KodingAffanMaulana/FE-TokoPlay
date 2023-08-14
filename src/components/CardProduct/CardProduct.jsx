@@ -1,6 +1,8 @@
 import React from 'react'
 
 const CardProduct = ({ title, price, link, discount }) => {
+    let formattedPrice = price.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, '.');
+
     const containerStyle = {
         backgroundImage: `url(${link})`,
         backgroundSize: 'cover',
@@ -26,7 +28,7 @@ const CardProduct = ({ title, price, link, discount }) => {
 
     return (
         <div className='flex flex-col rounded-lg text-white' style={containerStyle}>
-            <div className='flex items-start p-2 pb-16 sm:pb-[0] sm:h-[200px]'>
+            <div className='flex items-start p-2 pb-16 w-[150px] sm:w-0 overflow-x-auto sm:overflow-hidden sm:pb-[0] sm:h-[200px]'>
                 <div className="flex items-start bg-red-600 px-[8px] rounded-[5px] py-[1px] mr-1">
                     <p className='text-[12px]'>{discount} %</p>
                 </div>
@@ -35,7 +37,7 @@ const CardProduct = ({ title, price, link, discount }) => {
                 <div style={blurLayerStyle}></div>
                 <div className='flex flex-col' >
                     <h2 className='sm:text-xl font-semibold'>{title}</h2>
-                    <p className='sm:text-xl'>Rp. {price}</p>
+                    <p className='sm:text-xl'>Rp. {formattedPrice}</p>
                 </div>
             </div>
         </div>

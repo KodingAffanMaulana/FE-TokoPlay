@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { TfiClose } from 'react-icons/tfi';
 import CardProduct from '../../components/CardProduct/CardProduct';
-import Comment from '../../components/Comment/AddComment';
+import Comment from '../../components/Comment/Comment';
 
 const Headers = () => {
     return (
@@ -21,36 +21,36 @@ const Headers = () => {
 }
 
 const Detail = () => {
-    // const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails';
+    const url = 'https://affanmaulanamidproject-production.up.railway.app';
     const [products, setProducts] = useState([]);
-    const [setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [videoUrl, setVideoUrl] = useState('');
+    const [videoTitle, setVideoTitle] = useState('');
     const { id } = useParams();
 
     useEffect(() => {
+        setLoading(true);
         const loadDetail = async () => {
-            setLoading(true);
             try {
-                const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails/video?videoID=' + id;
-                const response = await fetch(url);
+                const response = await fetch(`${url}/thumbnails/video?videoID=${id}`);
                 const data = await response.json();
                 setVideoUrl(data[0].youtubeUrl);
+                setVideoTitle(data[0].title);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
-            setLoading(false);
         };
 
         loadDetail()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         const loadDetail = async () => {
             setLoading(true);
             try {
-                const url = 'https://affanmaulanamidproject-production.up.railway.app/products?videoID=' + id;
-                const response = await fetch(url);
+                const response = await fetch(`${url}/products?videoID=${id}`);
                 const data = await response.json();
                 setProducts(data);
                 console.log('pro', data)
@@ -61,7 +61,7 @@ const Detail = () => {
         };
 
         loadDetail()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -73,14 +73,32 @@ const Detail = () => {
                     <div className='flex flex-col sm:flex-row gap-4 sm:gap-0'>
                         <div className='flex flex-row sm:flex-col overflow-x-auto sm:wrap sm:object-none sm:w-[20%] bg-slate-700 rounded-lg p-4 gap-4 '>
                             <h1 className='text-white font-bold flex items-center sm:justify-center sm:text-center'>Products</h1>
-                            {products.map(({ title, link, discount, price }) => (
-                                <CardProduct title={title} price={price} link={link} discount={discount} />
-                            ))}
+                            {loading ? (
+                                <h1
+                                    style={{ width: "100%", textAlign: "center", marginTop: "20px" }}
+                                    className='text-white'
+                                >
+                                    Loading...
+                                </h1>
+                            ) : (
+                                products.map(({ title, link, discount, price }) => (
+                                    <CardProduct title={title} price={price} link={link} discount={discount} />
+                                ))
+                            )}
                         </div>
 
                         <div className='sm:w-[60%]'>
                             <div className="sm:px-4">
-                                <VideoCard title="Judul Video" videoUrl={videoUrl} />
+                                {loading ? (
+                                    <h1
+                                        style={{ width: "100%", textAlign: "center", marginTop: "20px" }}
+                                        className='text-white'
+                                    >
+                                        Loading...
+                                    </h1>
+                                ) : (
+                                    <VideoCard title={videoTitle} videoUrl={videoUrl} />
+                                )}
                             </div>
                         </div>
 
@@ -88,12 +106,6 @@ const Detail = () => {
                             <Comment />
                         </div>
                     </div>
-
-                    {/* {!loading ? (
-                    <VStack spacing={8}>
-                ) : (
-                    <Text size="md">Loading...</Text>
-                )} */}
                 </div>
             </div>
         </>

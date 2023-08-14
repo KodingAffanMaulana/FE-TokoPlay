@@ -13,13 +13,15 @@ const Comment = () => {
     const { id } = useParams();
 
     useEffect(() => {
+        setLoading(true);
         const loadDetail = async () => {
             try {
                 const url = 'https://affanmaulanamidproject-production.up.railway.app/comments?videoID=' + id;
                 const response = await fetch(url);
                 const data = await response.json();
                 setComments(data);
-                console.log(data)
+                console.log(data);
+                setLoading(true);
             } catch (error) {
                 console.log(error);
             }
@@ -60,8 +62,8 @@ const Comment = () => {
 
     return (
         <>
-            <div className='h-[100%]'>
-                <h1 className='text-white font-bold text-center'>List Comments</h1>
+            <div className='h-[100%] pb-4 sm:pb-0'>
+                <h1 className='text-white font-bold text-center'>Comments</h1>
                 <div className='flex flex-col gap-2 mt-4 text-white'>
                     {comments.map(({ username, comment }) => (
                         <div className='flex items-center gap-2  rounded-lg'>
