@@ -13,6 +13,7 @@ const Comment = () => {
     const { id } = useParams();
 
     useEffect(() => {
+        setLoading(true);
         const loadDetail = async () => {
             try {
                 const url = `${process.env.REACT_APP_BASE_URL}/comments?videoID=` + id;
@@ -20,6 +21,7 @@ const Comment = () => {
                 const data = await response.json();
                 setComments(data);
                 console.log(data);
+                setLoading(true);
             } catch (error) {
                 console.log(error);
             }
