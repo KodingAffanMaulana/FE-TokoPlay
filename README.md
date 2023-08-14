@@ -1,5 +1,11 @@
 # Final Project Generasi Gigih
 
+Frontend 
+[https://tokoplay-affan.netlify.app](https://tokoplay-affan.netlify.app)
+
+Backend [https://tokoplay-production.up.railway.app](https://tokoplay-production.up.railway.app)
+
+
 ## Installation
 
 Clone this repository with HTTPS in your terminal
@@ -14,20 +20,19 @@ Install dependencies with npm, yarn, etc
 npm install
 ```
 
+Set `.env_example` to `.env`\
+Change REACT_APP_BASE_URL with
+
+```bash
+https://tokoplay-production.up.railway.app
+```
+
+This API is built from a mid term backend assignment with added responsiveness and features
 
 ## Usage
 
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+```javascript
+npm start
 ```
 
 ## Contributing

@@ -8,6 +8,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Header = () => {
     const { searchField, setSearchField, products, setProducts, setFilterProducts } = useContext(Context);
     const url = process.env.REACT_APP_BASE_URL + "/thumbnails";
+    console.log(url);
     const location = useLocation();
     const [activeRoute, setActiveRoute] = useState(location.pathname);
 
