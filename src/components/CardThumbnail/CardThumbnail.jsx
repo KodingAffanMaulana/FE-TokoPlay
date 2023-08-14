@@ -31,11 +31,11 @@ const CardThumbnail = ({ title, imageUrl, view }) => {
     return (
         <div className='main flex flex-col' style={containerStyle}>
             <div className='col1 flex mb-[250px] sm:mb-[100%] items-center p-[8px]'>
-                <div className="flex items-center bg-red-600 px-[8px] rounded-[5px] py-[1px] mr-1">
+                <div className="flex items-center bg-red-600 px-[8px] rounded-[5px] py-[2px] mr-1">
                     <p className='text-[12px]'>LIVE</p>
                 </div>
                 <div className='flex items-center view px-[5px] rounded-[5px] py-[2px] gap-1'>
-                    <BsEye />
+                    <BsEye className='text-[12px]' />
                     <p className='text-[12px]'>{view}</p>
                 </div>
             </div>

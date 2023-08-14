@@ -13,7 +13,6 @@ const Comment = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        setLoading(true);
         const loadDetail = async () => {
             try {
                 const url = `${process.env.REACT_APP_BASE_URL}/comments?videoID=` + id;
@@ -21,7 +20,6 @@ const Comment = () => {
                 const data = await response.json();
                 setComments(data);
                 console.log(data);
-                setLoading(true);
             } catch (error) {
                 console.log(error);
             }
@@ -66,10 +64,15 @@ const Comment = () => {
                 <h1 className='text-white font-bold text-center'>Comments</h1>
                 <div className='flex flex-col gap-2 mt-4 text-white'>
                     {comments.map(({ _id, username, comment }) => (
-                        <div key={_id} className='flex items-center gap-2  rounded-lg'>
-                            <CgProfile fontSize='20px' alt={username} />
-                            <span className='text-slate-300 items-center'>{username}</span>
-                            <p>{comment}</p>
+                        <div key={_id} className='flex w-[100%] first-letter:items-center gap-1  rounded-lg'>
+                            <div className="w-[10%]">
+                                <CgProfile className="text-2xl" alt={username} />
+                            </div>
+                            <p className="w-[90%]">
+                                <span className=' text-slate-300'>{username + ' '}
+                                </span>
+                                {comment}
+                            </p>
                         </div>
                     ))}
                 </div>

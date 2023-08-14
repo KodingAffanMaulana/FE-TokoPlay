@@ -8,7 +8,7 @@ const Body = ({ filteredProducts }) => {
             {(!filteredProducts) ? (
                 <h1>Loading</h1>
             ) : (
-                <div className='container grid grid-cols-1 gap-2 p-4 sm:grid-cols-5 sm:gap-4 sm:p-8'>
+                <div className='container grid grid-cols-1 gap-2 p-4 sm:grid-cols-5 sm:gap-4 sm:p-8' style={{ scrollBehavior: 'smooth', overflowY: 'scroll' }}>
                     {filteredProducts.map(({ videoID, title, imageUrl, view }) => (
                         <Link key={videoID} to={`/detail/${videoID}`} >
                             <CardThumbnail className='category-container' view={view} id={videoID} title={title} imageUrl={imageUrl} />
