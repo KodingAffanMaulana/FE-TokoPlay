@@ -16,7 +16,7 @@ const Comment = () => {
         setLoading(true);
         const loadDetail = async () => {
             try {
-                const url = 'https://affanmaulanamidproject-production.up.railway.app/comments?videoID=' + id;
+                const url = `${process.env.REACT_APP_BASE_URL}/comments?videoID=` + id;
                 const response = await fetch(url);
                 const data = await response.json();
                 setComments(data);
@@ -39,7 +39,7 @@ const Comment = () => {
             videoID: id
         }
 
-        fetch('https://affanmaulanamidproject-production.up.railway.app/comments', {
+        fetch(`${process.env.REACT_APP_BASE_URL}/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

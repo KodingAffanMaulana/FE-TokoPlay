@@ -7,8 +7,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const { searchField, setSearchField, products, setProducts, setFilterProducts } = useContext(Context);
-    const url = 'https://affanmaulanamidproject-production.up.railway.app/thumbnails';
-
+    const url = process.env.REACT_APP_BASE_URL + "/thumbnails";
     const location = useLocation();
     const [activeRoute, setActiveRoute] = useState(location.pathname);
 
@@ -23,7 +22,7 @@ const Header = () => {
                 setProducts(thumbnails);
                 console.log(thumbnails);
             });
-    }, [setProducts]);
+    }, [setProducts, url]);
 
     useEffect(() => {
         const newFilteredMonsters = products.filter((product) => {
@@ -48,7 +47,7 @@ const Header = () => {
             <div className='flex items-center justify-between p-4'>
                 <div className='logo flex items-center'>
                     <img src={UrlImage} alt="logo" className='w-[150px] sm:w-[250px] ' />
-                    <span className='text-white text-sm sm:text-xl'>Playfan</span>
+                    <span className='text-white text-sm sm:text-lg'>Playfan</span>
                 </div>
                 <div className='flex items-center'>
                     <SearchBox
@@ -57,13 +56,13 @@ const Header = () => {
                     />
                 </div>
             </div>
-            <div className='text-white flex items-center p-4 overflow-x-auto sm:justify-center gap-2'>
+            <div className='text-white flex items-center p-4 overflow-x-auto sm:justify-center gap-2 text-[12px] sm:text-lg'>
                 <div className={activeRoute === '/' ? 'active' : ''}>
                     <button className={`px-4 py-1 whitespace-nowrap border ${activeRoute === '/' ? 'border-green-400' : 'border-gray-400'} rounded-full`}>
                         <Link
                             to="/"
                             onClick={() => handleNavLinkClick('/')}
-                            className={`text-base ${activeRoute === '/' ? 'text-green-400 ' : 'text-black'}`}
+                            className={`text-[12px] sm:text-lg ${activeRoute === '/' ? 'text-green-400 ' : 'text-black'}`}
                         >
                             Live
                         </Link>

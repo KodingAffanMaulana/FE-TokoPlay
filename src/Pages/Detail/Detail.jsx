@@ -21,7 +21,7 @@ const Headers = () => {
 }
 
 const Detail = () => {
-    const url = 'https://affanmaulanamidproject-production.up.railway.app';
+    const url = process.env.REACT_APP_BASE_URL;
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [videoUrl, setVideoUrl] = useState('');
