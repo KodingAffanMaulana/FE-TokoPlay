@@ -81,8 +81,8 @@ const Detail = () => {
                                     Loading...
                                 </h1>
                             ) : (
-                                products.map(({ title, link, discount, price }) => (
-                                    <CardProduct title={title} price={price} link={link} discount={discount} />
+                                products.map(({ productID, title, link, discount, price }) => (
+                                    <CardProduct key={productID} title={title} price={price} link={link} discount={discount} />
                                 ))
                             )}
                         </div>

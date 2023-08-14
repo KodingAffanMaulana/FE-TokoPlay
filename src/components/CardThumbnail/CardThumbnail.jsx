@@ -4,7 +4,8 @@ import { BsEye } from 'react-icons/bs'
 
 const CardThumbnail = ({ title, imageUrl, view }) => {
     const containerStyle = {
-        backgroundImage: `url(${imageUrl})`,
+        backgroundImage: imageUrl ? `url(${imageUrl})` : 'none', // Menggunakan background image jika imageUrl ada
+        backgroundColor: !imageUrl ? 'white' : 'transparent', // Menggunakan background color jika imageUrl tidak ada
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         width: '100%',

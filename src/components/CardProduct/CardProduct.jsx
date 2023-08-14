@@ -28,7 +28,7 @@ const CardProduct = ({ title, price, link, discount }) => {
 
     return (
         <div className='flex flex-col rounded-lg text-white' style={containerStyle}>
-            <div className='flex items-start p-2 pb-16 w-[150px] sm:w-0 overflow-x-auto sm:overflow-hidden sm:pb-[0] sm:h-[200px]'>
+            <div className='flex items-start p-2 pb-16 w-[150px] sm:w-full overflow-x-auto sm:overflow-hidden sm:pb-[0] sm:h-[200px]'>
                 <div className="flex items-start bg-red-600 px-[8px] rounded-[5px] py-[1px] mr-1">
                     <p className='text-[12px]'>{discount} %</p>
                 </div>

@@ -65,8 +65,8 @@ const Comment = () => {
             <div className='h-[100%] pb-4 sm:pb-0'>
                 <h1 className='text-white font-bold text-center'>Comments</h1>
                 <div className='flex flex-col gap-2 mt-4 text-white'>
-                    {comments.map(({ username, comment }) => (
-                        <div className='flex items-center gap-2  rounded-lg'>
+                    {comments.map(({ _id, username, comment }) => (
+                        <div key={_id} className='flex items-center gap-2  rounded-lg'>
                             <CgProfile fontSize='20px' alt={username} />
                             <span className='text-slate-300 items-center'>{username}</span>
                             <p>{comment}</p>
